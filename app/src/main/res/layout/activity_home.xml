@@ -8,12 +8,11 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="134dp"
-        android:layout_weight="1"
-        android:text="Button" />
+    <ImageView
+        android:id="@+id/dice_image"
+        android:layout_width="155dp"
+        android:layout_height="108dp"
+        android:src="@drawable/dice1" />
 
 
 </LinearLayout>
