@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void changeActivity() {
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
         startActivity(intent);
     }
 }
