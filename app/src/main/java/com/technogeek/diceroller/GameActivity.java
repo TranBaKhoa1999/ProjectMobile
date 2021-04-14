@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
         int i = random.nextInt(5)+1;
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
         diceImage.startAnimation(anim);
-        int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName());
+        int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName()); // change dot in dice
         diceImage.setImageResource(res);
         if(isHeroTurn ==false){
             Move(i,EnemyObject);
