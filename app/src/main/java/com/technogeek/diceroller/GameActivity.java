@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -31,16 +33,24 @@ public class GameActivity extends AppCompatActivity {
     private void setBasicGame(){
         diceImage = findViewById(R.id.dice_image);
         ImageView Enemy_img = findViewById(R.id.enemy);
-
+        TextView textView_p2 = findViewById(R.id.textView_p2);
         EnemyObject.setPosition(1);
         EnemyObject.setImage(Enemy_img);
+        EnemyObject.setTextView(textView_p2);
 
         ImageView Hero_img = findViewById(R.id.hero);
+        TextView textView_p1 = findViewById(R.id.textView_p1);
         HeroObject.setPosition(12);
         HeroObject.setImage(Hero_img);
+        HeroObject.setTextView(textView_p1);
         // get type of game from main Activity
         type_Of_Game = getIntent().getStringExtra("TYPE_OF_GAME");
+        //set style
+        EnemyObject.getTextView().setText("Khoa péo");
+        EnemyObject.getTextView().setTextColor(Color.rgb(18, 204, 59));
 
+        HeroObject.getTextView().setText("Khoa khoai to");
+        HeroObject.getTextView().setTextColor(Color.rgb(224, 75, 16));
     }
     private void setListenerEvent(){
         diceImage.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +81,7 @@ public class GameActivity extends AppCompatActivity {
             }
             @Override
             public void onAnimationRepeat(Animation animation) {
+
             }
         });
         diceImage.startAnimation(anim);
@@ -100,6 +111,7 @@ public class GameActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
+                        ChangePostitionHead(Character);
                         Character.setPosition(1 + Character.getPosition() >22? (1 +Character.getPosition() - 22): (1+ Character.getPosition()));
                         s[0]--;
                         if(s[0]>0) {
@@ -121,13 +133,20 @@ public class GameActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationRepeat(Animator animation) {
-
                     }
+
                 })
                 .start();
     }
 
     public void CloseActivity(View view) {
         onBackPressed();
+    }
+    public void ChangePostitionHead(CharacerClass Character){
+        Character.getTextView().animate()
+                .x(Character.getImage().getX())
+                .y(Character.getImage().getY())
+                .setDuration(0)
+                .start();
     }
 }
