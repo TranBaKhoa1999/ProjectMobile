@@ -2,15 +2,15 @@ package com.technogeek.diceroller;
 
 import android.widget.ImageView;
 
-public class EnemyClass {
-    ImageView enemy;
+public class CharacerClass {
+    ImageView Image;
     int position; // exp : 3 => box3
-    public void setEnemy(ImageView enemy) {
-        this.enemy = enemy;
+    public void setImage(ImageView enemy) {
+        this.Image = enemy;
     }
 
-    public ImageView getEnemy() {
-        return enemy;
+    public ImageView getImage() {
+        return Image;
     }
 
     public void setPosition(int position) {

@@ -25,6 +25,7 @@
         android:id="@+id/box1"
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -297,13 +298,28 @@
 
     <ImageView
         android:id="@+id/enemy"
-        android:layout_width="95dp"
-        android:layout_height="94dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/box1"
+        app:layout_constraintEnd_toEndOf="@+id/box1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/box1"
+        app:layout_constraintTop_toTopOf="@+id/box1"
+        app:layout_constraintVertical_bias="0.577"
         app:srcCompat="@drawable/enemy"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/hero"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:rotationY="-190"
+        app:layout_constraintBottom_toBottomOf="@+id/box12"
+        app:layout_constraintEnd_toEndOf="@+id/box12"
+        app:layout_constraintStart_toStartOf="@+id/box12"
+        app:layout_constraintTop_toTopOf="@+id/box12"
+        app:srcCompat="@drawable/hero"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
