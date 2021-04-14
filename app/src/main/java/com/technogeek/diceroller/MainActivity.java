@@ -12,23 +12,32 @@ import android.widget.ImageView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btn;
+    private Button pvspButton;
+    private  Button pvsbotButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        btn = findViewById(R.id.button3);
-        btn.setOnClickListener(new View.OnClickListener() {
+        pvspButton = findViewById(R.id.pvspbutton);
+        pvsbotButton = findViewById(R.id.pvsbotbutton);
+        pvspButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeActivity();
+                changeActivity("vsP");
+            }
+        });
+        pvsbotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity("vsBOT");
             }
         });
     }
-    public void changeActivity() {
+    public void changeActivity(String type) { // 1 pvsp , 2 pvsbot
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        intent.putExtra("TYPE_OF_GAME",type);
         startActivity(intent);
     }
 }

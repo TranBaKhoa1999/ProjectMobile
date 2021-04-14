@@ -15,8 +15,9 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     ImageView diceImage;
-    Boolean isHeroTurn = false;
+    Boolean isHeroTurn = true;
     Random random = new Random();
+    String type_Of_Game;
     CharacerClass EnemyObject = new CharacerClass();
     CharacerClass HeroObject = new CharacerClass();
     @Override
@@ -37,6 +38,8 @@ public class GameActivity extends AppCompatActivity {
         ImageView Hero_img = findViewById(R.id.hero);
         HeroObject.setPosition(12);
         HeroObject.setImage(Hero_img);
+        // get type of game from main Activity
+        type_Of_Game = getIntent().getStringExtra("TYPE_OF_GAME");
 
     }
     private void setListenerEvent(){
@@ -49,24 +52,34 @@ public class GameActivity extends AppCompatActivity {
     }
     private void rotateDice() {
         diceImage.setClickable(false);
-        int i = random.nextInt(5)+1;
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        final int i = random.nextInt(5)+1;
+        final Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName()); // change dot in dice
+                diceImage.setImageResource(res);
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if(isHeroTurn ==false){
+                    Move(i,EnemyObject);
+                }else{
+                    Move(i,HeroObject);
+                }
+                isHeroTurn= isHeroTurn==false?true:false;
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
         diceImage.startAnimation(anim);
-        int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName()); // change dot in dice
-        diceImage.setImageResource(res);
-        if(isHeroTurn ==false){
-            Move(i,EnemyObject);
-        }else{
-            Move(i,HeroObject);
-        }
-        isHeroTurn= isHeroTurn==false?true:false;
     }
     public void Move(int step, final CharacerClass Character){
         final int[]s = {step};
         int currentPos = Character.getPosition();
         currentPos = currentPos+1>22? 1 : currentPos+1;
         String Boxid_str = "box"+ currentPos;
-        System.out.println(Boxid_str);
         int Boxid = getResources().getIdentifier(Boxid_str, "id", getPackageName());
         ImageView Box = (ImageView) findViewById(Boxid);
         final int finalCurrentPos = currentPos;
@@ -92,7 +105,12 @@ public class GameActivity extends AppCompatActivity {
                         if(s[0]>0) {
                             Move(s[0],Character);
                         }else{
-                            diceImage.setClickable(true);
+                            if(type_Of_Game.equals("vsBOT") && isHeroTurn==false){
+                                rotateDice();
+                            }else{
+                                diceImage.setClickable(true);
+                            }
+
                         }
                     }
 
@@ -109,4 +127,7 @@ public class GameActivity extends AppCompatActivity {
                 .start();
     }
 
+    public void CloseActivity(View view) {
+        onBackPressed();
+    }
 }
