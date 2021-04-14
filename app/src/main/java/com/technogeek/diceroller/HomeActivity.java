@@ -21,7 +21,6 @@ public class HomeActivity extends AppCompatActivity {
     ImageView diceImage;
     ImageView X;
     Random random = new Random();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

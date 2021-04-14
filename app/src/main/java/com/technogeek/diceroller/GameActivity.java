@@ -19,14 +19,17 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     ImageView diceImage;
+    ImageView Enemy_img;
     Random random = new Random();
-
+    EnemyClass EnemyObject = new EnemyClass();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         diceImage = findViewById(R.id.dice_image);
+        Enemy_img = findViewById(R.id.enemy);
+        EnemyObject.setPosition(1);
         diceImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,13 +45,23 @@ public class GameActivity extends AppCompatActivity {
         int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName());
         diceImage.setImageResource(res);
         Move(i);
+        EnemyObject.setPosition(i + EnemyObject.getPosition() >22? (i +EnemyObject.getPosition() - 22): (i+ EnemyObject.getPosition()));
     }
-    public void Move(int i){
-//        ObjectAnimator animX = ObjectAnimator.ofFloat(X, "x",);
-//        ObjectAnimator animY = ObjectAnimator.ofFloat(X, "y", 134);
-//        AnimatorSet animSetXY = new AnimatorSet();
-//        animSetXY.playTogether(animX, animY);
-//        animSetXY.start();
+    public void Move(int step){
+        int currentPos = EnemyObject.getPosition();
+        for(int i=1;i<=step;i++){
+            currentPos = currentPos+1>22? 1 : currentPos+1;
+            String Boxid_str = "box"+ currentPos;
+            System.out.println(Boxid_str);
+            int Boxid = getResources().getIdentifier(Boxid_str, "id", getPackageName());
+            ImageView Box = (ImageView) findViewById(Boxid);
+        Enemy_img.animate()
+                    .x(Box.getX())
+                    .y( Box.getY())
+                    .setDuration(500)
+                    .start();
+
+        }
     }
 
 }

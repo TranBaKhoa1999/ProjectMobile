@@ -22,6 +22,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
+        android:id="@+id/box1"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginTop="4dp"
@@ -31,7 +32,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView44"
+        android:id="@+id/box12"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_marginStart="576dp"
@@ -42,7 +43,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView35"
+        android:id="@+id/box22"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="40dp"
@@ -53,7 +54,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView36"
+        android:id="@+id/box21"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="40dp"
@@ -64,7 +65,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView37"
+        android:id="@+id/box20"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="40dp"
@@ -86,7 +87,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView53"
+        android:id="@+id/box19"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="112dp"
@@ -97,7 +98,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView56"
+        android:id="@+id/box18"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="180dp"
@@ -130,7 +131,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView59"
+        android:id="@+id/box16"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="316dp"
@@ -141,7 +142,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView60"
+        android:id="@+id/box15"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="384dp"
@@ -152,7 +153,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView62"
+        android:id="@+id/box14"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="452dp"
@@ -163,7 +164,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView63"
+        android:id="@+id/box13"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="520dp"
@@ -174,7 +175,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView61"
+        android:id="@+id/box17"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="248dp"
@@ -185,7 +186,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView34"
+        android:id="@+id/box7"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="452dp"
@@ -196,7 +197,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView50"
+        android:id="@+id/box8"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="520dp"
@@ -207,7 +208,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView32"
+        android:id="@+id/box5"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="316dp"
@@ -218,7 +219,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView49"
+        android:id="@+id/box9"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="588dp"
@@ -229,7 +230,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView51"
+        android:id="@+id/box10"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="588dp"
@@ -240,7 +241,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView52"
+        android:id="@+id/box11"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="588dp"
@@ -251,7 +252,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView31"
+        android:id="@+id/box4"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="248dp"
@@ -262,7 +263,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView33"
+        android:id="@+id/box6"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="384dp"
@@ -273,7 +274,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView30"
+        android:id="@+id/box3"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="180dp"
@@ -284,6 +285,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
+        android:id="@+id/box2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="112dp"
@@ -294,6 +296,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
+        android:id="@+id/enemy"
         android:layout_width="95dp"
         android:layout_height="94dp"
         android:layout_marginStart="16dp"
