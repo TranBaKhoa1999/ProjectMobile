@@ -2,39 +2,55 @@ package com.technogeek.diceroller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
-    ImageView diceImage;
-    Random random = new Random();
+    private Button pvspButton;
+    private  Button pvsbotButton;
+    private  Button charButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        diceImage = findViewById(R.id.dice_image);
-
-        diceImage.setOnClickListener(new View.OnClickListener() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        pvspButton = findViewById(R.id.pvspbutton);
+        pvsbotButton = findViewById(R.id.pvsbotbutton);
+        charButton = findViewById(R.id.characterButton);
+        pvspButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                rotateDice();
+            public void onClick(View v) {
+                changeActivity("vsP");
+            }
+        });
+        pvsbotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity("vsBOT");
+            }
+        });
+        charButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeLayout();
             }
         });
     }
-
-    private void rotateDice() {
-        int i = random.nextInt(5)+1;
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        diceImage.startAnimation(anim);
-        int res = getResources().getIdentifier("dice" + i, "drawable",getPackageName());
-        diceImage.setImageResource(res);
+    public void changeActivity(String type) { // 1 pvsp , 2 pvsbot
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        intent.putExtra("TYPE_OF_GAME",type);
+        startActivity(intent);
     }
+
+    public void changeLayout(){
+        startActivity(new Intent(MainActivity.this, SelectCharacterActivity.class));
+    }
+
 }
