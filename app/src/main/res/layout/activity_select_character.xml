@@ -108,5 +108,6 @@
         android:onClick="CloseActivity"
         android:text="Back"
         tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="3dp" />
+        tools:layout_editor_absoluteY="3dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
