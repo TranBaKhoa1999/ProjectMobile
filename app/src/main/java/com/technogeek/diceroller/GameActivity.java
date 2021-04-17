@@ -62,7 +62,7 @@ public class GameActivity extends AppCompatActivity {
     }
     private void rotateDice() {
         diceImage.setClickable(false);
-        final int i = random.nextInt(5)+1;
+        final int i = random.nextInt(6)+1;
         final Animation anim = AnimationUtils.loadAnimation(this, R.anim.rotate);
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
