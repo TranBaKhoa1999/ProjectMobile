@@ -14,7 +14,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private Button pvspButton;
     private  Button pvsbotButton;
-    private  Button charButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         pvspButton = findViewById(R.id.pvspbutton);
         pvsbotButton = findViewById(R.id.pvsbotbutton);
-        charButton = findViewById(R.id.characterButton);
         pvspButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,21 +34,11 @@ public class MainActivity extends AppCompatActivity {
                 changeActivity("vsBOT");
             }
         });
-        charButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeLayout();
-            }
-        });
     }
     public void changeActivity(String type) { // 1 pvsp , 2 pvsbot
-        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        Intent intent = new Intent(MainActivity.this, SelectCharacterActivity.class);
         intent.putExtra("TYPE_OF_GAME",type);
         startActivity(intent);
-    }
-
-    public void changeLayout(){
-        startActivity(new Intent(MainActivity.this, SelectCharacterActivity.class));
     }
 
 }
