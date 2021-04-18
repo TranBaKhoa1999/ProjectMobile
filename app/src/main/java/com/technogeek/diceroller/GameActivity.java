@@ -31,14 +31,20 @@ public class GameActivity extends AppCompatActivity {
         setListenerEvent();
     }
     private void setBasicGame(){
+        int id1 = getIntent().getIntExtra("Image_player_1",0);
+        int id2 = getIntent().getIntExtra("Image_player_2",0);
+
+
         diceImage = findViewById(R.id.dice_image);
         ImageView Enemy_img = findViewById(R.id.enemy);
+        Enemy_img.setImageResource(id1);
         TextView textView_p2 = findViewById(R.id.textView_p2);
         EnemyObject.setPosition(1);
         EnemyObject.setImage(Enemy_img);
         EnemyObject.setTextView(textView_p2);
 
         ImageView Hero_img = findViewById(R.id.hero);
+        Hero_img.setImageResource(id2);
         TextView textView_p1 = findViewById(R.id.textView_p1);
         HeroObject.setPosition(12);
         HeroObject.setImage(Hero_img);

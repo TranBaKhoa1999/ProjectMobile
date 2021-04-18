@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,7 @@ public class SelectCharacterActivity extends AppCompatActivity {
     TextView info1, info2;
     Button btnSelect, btnPlay;
     int flag = 0, choose;
+    int choose1,choose2;
     String type_Of_Game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,8 @@ public class SelectCharacterActivity extends AppCompatActivity {
         info1 = findViewById(R.id.textView1);
         info2 = findViewById(R.id.textView2);
         player1 = findViewById(R.id.imageViewPlayer1);
+        choose1 = getResources().getIdentifier("char" + 1,"drawable", getPackageName());
+        choose2 = getResources().getIdentifier("char" + 2,"drawable", getPackageName());
         player2 = findViewById(R.id.imageViewPlayer2);
         char1 = findViewById(R.id.char1Image);
         char2 = findViewById(R.id.char2Image);
@@ -56,22 +62,14 @@ public class SelectCharacterActivity extends AppCompatActivity {
         player1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(type_Of_Game.equalsIgnoreCase("vsP")) {
-                    Toast.makeText(getApplicationContext(), "Select character for player 1", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(getApplicationContext(), "Select character for player", Toast.LENGTH_SHORT).show();
-                }
+                hightPlayer(player1);
                 flag = 1;
             }
         });
         player2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(type_Of_Game.equalsIgnoreCase("vsP")) {
-                    Toast.makeText(getApplicationContext(), "Select character for player 2", Toast.LENGTH_SHORT).show();
-                } else{
-                    Toast.makeText(getApplicationContext(), "Select character for bot", Toast.LENGTH_SHORT).show();
-                }
+                hightPlayer(player2);
                 flag = 2;
 
             }
@@ -79,89 +77,57 @@ public class SelectCharacterActivity extends AppCompatActivity {
         char1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char1);
                 choose = getResources().getIdentifier("char" + 1,"drawable", getPackageName());
-                if(flag == 0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Warrior", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char2);
                 choose = getResources().getIdentifier("char" + 2,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Priest", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char3);
                 choose = getResources().getIdentifier("char" + 3,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Archer", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char4);
                 choose = getResources().getIdentifier("char" + 4,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Thief", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char5);
                 choose = getResources().getIdentifier("char" + 5,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Assasin", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char6);
                 choose = getResources().getIdentifier("char" + 6,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Hunter", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char7);
                 choose = getResources().getIdentifier("char" + 7,"drawable", getPackageName());
-                if(flag ==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Death Knight", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         char8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                highLightImage(char8);
                 choose = getResources().getIdentifier("char" + 8,"drawable", getPackageName());
-                if(flag==0){
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Berserker", Toast.LENGTH_SHORT).show();
-                }
             }
         });
         btnSelect.setOnClickListener(new View.OnClickListener() {
@@ -169,22 +135,12 @@ public class SelectCharacterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(flag == 1){
                     player1.setImageResource(choose);
-                    if(type_Of_Game.equalsIgnoreCase("vsP")) {
-                        Toast.makeText(getApplicationContext(), "You have chosen character for player 1", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Toast.makeText(getApplicationContext(), "You have chosen character for player", Toast.LENGTH_SHORT).show();
-                    }
+                    choose1 = choose;
                     flag = 0;
                 } else if(flag == 2){
                     player2.setImageResource(choose);
-                    if(type_Of_Game.equalsIgnoreCase("vsP")) {
-                        Toast.makeText(getApplicationContext(), "You have chosen character for player 2", Toast.LENGTH_SHORT).show();
-                    } else{
-                        Toast.makeText(getApplicationContext(), "You have chosen character for bot", Toast.LENGTH_SHORT).show();
-                    }
+                    choose2 = choose;
                     flag = 0;
-                } else{
-                    Toast.makeText(getApplicationContext(), "Please select who you want to set character",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -202,6 +158,29 @@ public class SelectCharacterActivity extends AppCompatActivity {
     public void changeActivity(String type) { // 1 pvsp , 2 pvsbot
         Intent intent = new Intent(SelectCharacterActivity.this, GameActivity.class);
         intent.putExtra("TYPE_OF_GAME",type);
+        intent.putExtra("Image_player_1",choose1);
+        intent.putExtra("Image_player_2",choose2);
         startActivity(intent);
+    }
+    public void highLightImage(ImageView _this){
+        char1.setBackgroundResource(0);
+        char2.setBackgroundResource(0);
+        char3.setBackgroundResource(0);
+        char4.setBackgroundResource(0);
+        char5.setBackgroundResource(0);
+        char6.setBackgroundResource(0);
+        char7.setBackgroundResource(0);
+        char8.setBackgroundResource(0);
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(0xFF00FF00); // Changes this drawbale to use a single color instead of a gradient
+        _this.setBackgroundDrawable(gd);
+    }
+    public void hightPlayer(ImageView _this){
+        player1.setBackgroundResource(0);
+        player2.setBackgroundResource(0);
+
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.rgb(43, 31, 153)); // Changes this drawbale to use a single color instead of a gradient
+        _this.setBackgroundDrawable(gd);
     }
 }
