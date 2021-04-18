@@ -6,6 +6,7 @@ import android.animation.Animator;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -37,26 +38,40 @@ public class GameActivity extends AppCompatActivity {
 
         diceImage = findViewById(R.id.dice_image);
         ImageView Enemy_img = findViewById(R.id.enemy);
-        Enemy_img.setImageResource(id1);
         TextView textView_p2 = findViewById(R.id.textView_p2);
         EnemyObject.setPosition(1);
         EnemyObject.setImage(Enemy_img);
+        EnemyObject.setImageResource(id1);
         EnemyObject.setTextView(textView_p2);
 
         ImageView Hero_img = findViewById(R.id.hero);
-        Hero_img.setImageResource(id2);
         TextView textView_p1 = findViewById(R.id.textView_p1);
         HeroObject.setPosition(12);
         HeroObject.setImage(Hero_img);
+        HeroObject.setImageResource(id2);
         HeroObject.setTextView(textView_p1);
         // get type of game from main Activity
         type_Of_Game = getIntent().getStringExtra("TYPE_OF_GAME");
         //set style
-        EnemyObject.getTextView().setText("Khoa péo");
+        if(type_Of_Game.equals("vsP")){
+            EnemyObject.getTextView().setText("Player 2");
+            HeroObject.getTextView().setText("Player 1");
+        }else{
+            EnemyObject.getTextView().setText("BOT");
+            HeroObject.getTextView().setText("Player");
+        }
         EnemyObject.getTextView().setTextColor(Color.rgb(18, 204, 59));
-
-        HeroObject.getTextView().setText("Khoa khoai to");
         HeroObject.getTextView().setTextColor(Color.rgb(224, 75, 16));
+
+        // fix size image
+        int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics());
+        Hero_img.getLayoutParams().height = dimensionInDp;
+        Hero_img.getLayoutParams().width = dimensionInDp;
+        Hero_img.requestLayout();
+
+        Enemy_img.getLayoutParams().height = dimensionInDp;
+        Enemy_img.getLayoutParams().width = dimensionInDp;
+        Enemy_img.requestLayout();
     }
     private void setListenerEvent(){
         diceImage.setOnClickListener(new View.OnClickListener() {
@@ -150,8 +165,8 @@ public class GameActivity extends AppCompatActivity {
     }
     public void ChangePostitionHead(CharacerClass Character){
         Character.getTextView().animate()
-                .x(Character.getImage().getX())
-                .y(Character.getImage().getY())
+                .x(Character.getImage().getX() )
+                .y(Character.getImage().getY() - Character.getImage().getHeight()/(5/2))
                 .setDuration(0)
                 .start();
     }

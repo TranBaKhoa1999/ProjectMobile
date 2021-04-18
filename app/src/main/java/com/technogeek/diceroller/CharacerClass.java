@@ -1,6 +1,7 @@
 package com.technogeek.diceroller;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CharacerClass {
@@ -8,6 +9,8 @@ public class CharacerClass {
     int position; // exp : 3 => box3
     int Health;
     TextView textView;
+    int imageWidth = 65;
+    int imageHeight  = 66;
     public void setImage(ImageView enemy) {
         this.Image = enemy;
     }
@@ -38,4 +41,9 @@ public class CharacerClass {
     public void setTextView(TextView textView) {
         this.textView = textView;
     }
+
+    public void setImageResource(int id){
+        this.Image.setImageResource(id);
+    }
+
 }

@@ -51,11 +51,11 @@ public class SelectCharacterActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.buttonPlay);
         type_Of_Game = getIntent().getStringExtra("TYPE_OF_GAME");
         if(type_Of_Game.equalsIgnoreCase("vsP")){
-            info1.setText("PLAYER 1");
-            info2.setText("PLAYER 2");
+            info1.setText("PLAYER 2");
+            info2.setText("PLAYER 1");
         } else {
-            info1.setText("PLAYER");
-            info2.setText("BOT");
+            info1.setText("BOT");
+            info2.setText("PLAYER");
         }
     }
     private  void setListenerEvent(){
@@ -133,6 +133,8 @@ public class SelectCharacterActivity extends AppCompatActivity {
         btnSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                player1.setBackgroundResource(0);
+                player2.setBackgroundResource(0);
                 if(flag == 1){
                     player1.setImageResource(choose);
                     choose1 = choose;
