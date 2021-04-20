@@ -50,7 +50,7 @@ public class SelectCharacterActivity extends AppCompatActivity {
         btnSelect = findViewById(R.id.buttonSelectCharacter);
         btnPlay = findViewById(R.id.buttonPlay);
         type_Of_Game = getIntent().getStringExtra("TYPE_OF_GAME");
-        if(type_Of_Game.equalsIgnoreCase("vsP")){
+        if(type_Of_Game.equals("vsP")){
             info1.setText("PLAYER 2");
             info2.setText("PLAYER 1");
         } else {
@@ -77,57 +77,49 @@ public class SelectCharacterActivity extends AppCompatActivity {
         char1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char1);
-                choose = getResources().getIdentifier("char" + 1,"drawable", getPackageName());
+                chooseCharacter(char1,1);
             }
         });
         char2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char2);
-                choose = getResources().getIdentifier("char" + 2,"drawable", getPackageName());
+                chooseCharacter(char2,2);
             }
         });
         char3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char3);
-                choose = getResources().getIdentifier("char" + 3,"drawable", getPackageName());
+                chooseCharacter(char3,3);
             }
         });
         char4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char4);
-                choose = getResources().getIdentifier("char" + 4,"drawable", getPackageName());
+                chooseCharacter(char4,4);
             }
         });
         char5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char5);
-                choose = getResources().getIdentifier("char" + 5,"drawable", getPackageName());
+                chooseCharacter(char5,5);
             }
         });
         char6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char6);
-                choose = getResources().getIdentifier("char" + 6,"drawable", getPackageName());
+                chooseCharacter(char6,6);
             }
         });
         char7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char7);
-                choose = getResources().getIdentifier("char" + 7,"drawable", getPackageName());
+                chooseCharacter(char7,7);
             }
         });
         char8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                highLightImage(char8);
-                choose = getResources().getIdentifier("char" + 8,"drawable", getPackageName());
+                chooseCharacter(char8,8);
             }
         });
         btnSelect.setOnClickListener(new View.OnClickListener() {
@@ -139,10 +131,12 @@ public class SelectCharacterActivity extends AppCompatActivity {
                     player1.setImageResource(choose);
                     choose1 = choose;
                     flag = 0;
+                    unChoose();
                 } else if(flag == 2){
                     player2.setImageResource(choose);
                     choose2 = choose;
                     flag = 0;
+                    unChoose();
                 }
             }
         });
@@ -164,7 +158,7 @@ public class SelectCharacterActivity extends AppCompatActivity {
         intent.putExtra("Image_player_2",choose2);
         startActivity(intent);
     }
-    public void highLightImage(ImageView _this){
+    public void chooseCharacter(ImageView _this, int imgId){
         char1.setBackgroundResource(0);
         char2.setBackgroundResource(0);
         char3.setBackgroundResource(0);
@@ -174,15 +168,25 @@ public class SelectCharacterActivity extends AppCompatActivity {
         char7.setBackgroundResource(0);
         char8.setBackgroundResource(0);
         GradientDrawable gd = new GradientDrawable();
-        gd.setColor(0xFF00FF00); // Changes this drawbale to use a single color instead of a gradient
+        gd.setColor(Color.rgb(4, 214, 34)); // Changes this drawbale to use a single color instead of a gradient
         _this.setBackgroundDrawable(gd);
+        choose = getResources().getIdentifier("char" + imgId,"drawable", getPackageName());
     }
     public void hightPlayer(ImageView _this){
         player1.setBackgroundResource(0);
         player2.setBackgroundResource(0);
-
         GradientDrawable gd = new GradientDrawable();
-        gd.setColor(Color.rgb(43, 31, 153)); // Changes this drawbale to use a single color instead of a gradient
+        gd.setColor(Color.rgb(77, 87, 250)); // Changes this drawbale to use a single color instead of a gradient
         _this.setBackgroundDrawable(gd);
+    }
+    public void unChoose(){
+        char1.setBackgroundResource(0);
+        char2.setBackgroundResource(0);
+        char3.setBackgroundResource(0);
+        char4.setBackgroundResource(0);
+        char5.setBackgroundResource(0);
+        char6.setBackgroundResource(0);
+        char7.setBackgroundResource(0);
+        char8.setBackgroundResource(0);
     }
 }
