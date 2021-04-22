@@ -6,16 +6,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:screenOrientation="landscape"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/pvspbutton"
         android:layout_width="260dp"
-        android:layout_height="153dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
+        android:background="@drawable/custom_main_button"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#FA0202"
         android:text="P vs P"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -23,15 +29,19 @@
     <Button
         android:id="@+id/pvsbotbutton"
         android:layout_width="260dp"
-        android:layout_height="153dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="40dp"
         android:layout_weight="1"
+        android:background="@drawable/custom_main_button"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#FA0202"
         android:text="P vs Bot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
