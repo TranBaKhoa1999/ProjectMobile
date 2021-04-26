@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.Animator;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -23,12 +24,14 @@ public class GameActivity extends AppCompatActivity {
     String type_Of_Game;
     CharacerClass EnemyObject = new CharacerClass();
     CharacerClass HeroObject = new CharacerClass();
+    AttributeBox HealBoxObject = new AttributeBox();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setBasicGame();
+        randomHealBox();
         setListenerEvent();
     }
     private void setBasicGame(){
@@ -72,6 +75,7 @@ public class GameActivity extends AppCompatActivity {
         Enemy_img.getLayoutParams().height = dimensionInDp;
         Enemy_img.getLayoutParams().width = dimensionInDp;
         Enemy_img.requestLayout();
+
     }
     private void setListenerEvent(){
         diceImage.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +85,43 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
+    private void randomHealBox(){
+        int i = random.nextInt(22)+1;
+        int count = 6;
+        while (count > 0) {
+            if(HealBoxObject.isHome(i) == false) {
+                String boxId_str = "box" + i;
+                int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
+                ImageView box = (ImageView) findViewById(boxId);
+                HealBoxObject.setImg(box);
+                HealBoxObject.setPositon(i);
+                int res = getResources().getIdentifier("potion", "drawable", getPackageName());
+                HealBoxObject.setImageResource(res);
+                i = random.nextInt(22) + 1;
+                count--;
+            }
+            else {
+                i = random.nextInt(22) + 1;
+            }
+        }
+    }
+//    private void randomAttackBox(){
+//        int i = random.nextInt(22)+1;
+//        HealBoxObject.setPositon(i);
+//        while (HealBoxObject.checkPosition(i) == true){
+//            System.out.println("ok");
+//            if(HealBoxObject.isHome(i) == false){
+//                String boxId_str = "box" + i;
+//                int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
+//                ImageView box = (ImageView) findViewById(boxId);
+//                HealBoxObject.setImg(box);
+//                HealBoxObject.setPositon(i);
+//                int res = getResources().getIdentifier("potion", "drawable", getPackageName());
+//                HealBoxObject.setImageResource(res);
+//            }else{
+//                i = random.nextInt(22)+1;}
+//        }
+//    }
     private void rotateDice() {
         diceImage.setClickable(false);
         final int i = random.nextInt(6)+1;
