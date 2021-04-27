@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -60,9 +61,13 @@ public class GameActivity extends AppCompatActivity {
             EnemyObject.getTextView().setText("BOT");
             HeroObject.getTextView().setText("Player");
         }
+        //set text head color
         EnemyObject.getTextView().setTextColor(Color.rgb(18, 204, 59));
         HeroObject.getTextView().setTextColor(Color.rgb(224, 75, 16));
 
+        //set health
+        EnemyObject.setHealth(100);
+        HeroObject.setHealth(90);
         // fix size image
         int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics());
         Hero_img.getLayoutParams().height = dimensionInDp;
@@ -72,6 +77,18 @@ public class GameActivity extends AppCompatActivity {
         Enemy_img.getLayoutParams().height = dimensionInDp;
         Enemy_img.getLayoutParams().width = dimensionInDp;
         Enemy_img.requestLayout();
+
+        //set health bar
+        ProgressBar healthBarP1 = findViewById(R.id.healthBarP1);
+        ProgressBar healthBarP2 = findViewById(R.id.healthBarP2);
+        healthBarP1.setMax(100);
+        healthBarP2.setMax(100);
+
+        healthBarP1.getProgressDrawable().setColorFilter(Color.rgb(217, 20, 33),android.graphics.PorterDuff.Mode.MULTIPLY);
+        healthBarP2.getProgressDrawable().setColorFilter(Color.rgb(77, 219, 0),android.graphics.PorterDuff.Mode.MULTIPLY);
+        healthBarP1.setProgress(HeroObject.getHealth());
+        healthBarP2.setProgress(EnemyObject.getHealth());
+
     }
     private void setListenerEvent(){
         diceImage.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +140,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         if(finalCurrentPos == 12){
-                            Character.getImage().setRotationY(-190);
+                            Character.getImage().setRotationY(-180);
                         }
                         if(finalCurrentPos == 21){
                             Character.getImage().setRotationY(0);
@@ -164,10 +181,10 @@ public class GameActivity extends AppCompatActivity {
         onBackPressed();
     }
     public void ChangePostitionHead(CharacerClass Character){
-        Character.getTextView().animate()
-                .x(Character.getImage().getX() )
-                .y(Character.getImage().getY() - Character.getImage().getHeight()/(5/2))
-                .setDuration(0)
-                .start();
+//        Character.getTextView().animate()
+//                .x(Character.getImage().getX() )
+//                .y(Character.getImage().getY() - Character.getImage().getHeight()/(5/2))
+//                .setDuration(0)
+//                .start();
     }
 }

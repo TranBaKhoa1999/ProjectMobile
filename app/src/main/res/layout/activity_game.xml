@@ -349,4 +349,25 @@
         app:layout_constraintEnd_toEndOf="@+id/enemy"
         app:layout_constraintStart_toStartOf="@+id/enemy" />
 
+    <ProgressBar
+        android:id="@+id/healthBarP1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="400dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="4dp"
+        android:rotationY="-190"
+        android:scaleY="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/healthBarP2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="400dp"
+        android:layout_height="20dp"
+        android:scaleY="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
