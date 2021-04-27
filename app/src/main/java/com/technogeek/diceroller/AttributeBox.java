@@ -2,6 +2,9 @@ package com.technogeek.diceroller;
 
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AttributeBox {
     ImageView img;
     int positon;
@@ -46,11 +49,6 @@ public class AttributeBox {
 
     public boolean isHome (int i){
         if (i == 1 || i == 12) {return true;}
-        return false;
-    }
-
-    public  boolean checkPosition(int i){
-        if (i == positon){ return true;}
         return false;
     }
 }

@@ -14,6 +14,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -24,7 +26,9 @@ public class GameActivity extends AppCompatActivity {
     String type_Of_Game;
     CharacerClass EnemyObject = new CharacerClass();
     CharacerClass HeroObject = new CharacerClass();
+    List<Integer> checkList = new ArrayList();
     AttributeBox HealBoxObject = new AttributeBox();
+    AttributeBox AttackBoxObject = new AttributeBox();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,7 @@ public class GameActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setBasicGame();
         randomHealBox();
+        randomAttackBox();
         setListenerEvent();
     }
     private void setBasicGame(){
@@ -85,43 +90,46 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
-    private void randomHealBox(){
-        int i = random.nextInt(22)+1;
-        int count = 6;
-        while (count > 0) {
-            if(HealBoxObject.isHome(i) == false) {
+    public void randomHealBox(){
+        //create 6 box heal
+        int i, healBox = 6;;
+        Random random = new Random();
+        while (healBox > 0) {
+            i = random.nextInt(22) + 1;
+            if(HealBoxObject.isHome(i)) continue;
+            if(checkList.contains(i) == false) {
                 String boxId_str = "box" + i;
                 int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
                 ImageView box = (ImageView) findViewById(boxId);
                 HealBoxObject.setImg(box);
                 HealBoxObject.setPositon(i);
-                int res = getResources().getIdentifier("potion", "drawable", getPackageName());
+                int res = getResources().getIdentifier("heal", "drawable", getPackageName());
                 HealBoxObject.setImageResource(res);
-                i = random.nextInt(22) + 1;
-                count--;
-            }
-            else {
-                i = random.nextInt(22) + 1;
+                checkList.add(i);
+                healBox--;
             }
         }
     }
-//    private void randomAttackBox(){
-//        int i = random.nextInt(22)+1;
-//        HealBoxObject.setPositon(i);
-//        while (HealBoxObject.checkPosition(i) == true){
-//            System.out.println("ok");
-//            if(HealBoxObject.isHome(i) == false){
-//                String boxId_str = "box" + i;
-//                int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
-//                ImageView box = (ImageView) findViewById(boxId);
-//                HealBoxObject.setImg(box);
-//                HealBoxObject.setPositon(i);
-//                int res = getResources().getIdentifier("potion", "drawable", getPackageName());
-//                HealBoxObject.setImageResource(res);
-//            }else{
-//                i = random.nextInt(22)+1;}
-//        }
-//    }
+    private void randomAttackBox(){
+        //create 14 box attack
+        int i, attackBox = 14;
+        Random random = new Random();
+        while (attackBox > 0) {
+            i = random.nextInt(22)+1;
+            if(AttackBoxObject.isHome(i)) continue;
+            if(checkList.contains(i) == false) {
+                String boxId_str = "box" + i;
+                int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
+                ImageView box = (ImageView) findViewById(boxId);
+                AttackBoxObject.setImg(box);
+                AttackBoxObject.setPositon(i);
+                int res = getResources().getIdentifier("attack", "drawable", getPackageName());
+                AttackBoxObject.setImageResource(res);
+                checkList.add(i);
+                attackBox--;
+            }
+        }
+    }
     private void rotateDice() {
         diceImage.setClickable(false);
         final int i = random.nextInt(6)+1;
