@@ -75,14 +75,9 @@ public class GameActivity extends AppCompatActivity {
         //set health
         EnemyObject.setHealth(100);
         HeroObject.setHealth(90);
-        //set health bar
-        ProgressBar healthBarP1 = findViewById(R.id.progressBar_ph1);
-        ProgressBar healthBarP2 = findViewById(R.id.progressBar_ph2);
-        healthBarP1.setMax(100);
-        healthBarP2.setMax(100);
 
-        healthBarP1.setProgress(HeroObject.getHealth());
-        healthBarP2.setProgress(EnemyObject.getHealth());
+        //set health bar
+        drawProgressBar();
         // fix size image
         int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics());
         Hero_img.getLayoutParams().height = dimensionInDp;
@@ -93,6 +88,9 @@ public class GameActivity extends AppCompatActivity {
         Enemy_img.getLayoutParams().width = dimensionInDp;
         Enemy_img.requestLayout();
 
+
+        HeroObject.setEnemy(EnemyObject);
+        EnemyObject.setEnemy(HeroObject);
     }
     private void setListenerEvent(){
         diceImage.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +182,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         if(finalCurrentPos == 12){
-                            Character.getImage().setRotationY(-190);
+                            Character.getImage().setRotationY(-180);
                         }
                         if(finalCurrentPos == 21){
                             Character.getImage().setRotationY(0);
@@ -199,6 +197,7 @@ public class GameActivity extends AppCompatActivity {
                         if(s[0]>0) {
                             Move(s[0],Character);
                         }else{
+                            setActionWhenMoveDone(Character);
                             if(type_Of_Game.equals("vsBOT") && isHeroTurn==false){
                                 rotateDice();
                             }else{
@@ -230,5 +229,21 @@ public class GameActivity extends AppCompatActivity {
                 .y(Character.getImage().getY() - Character.getImage().getHeight()/(5/2))
                 .setDuration(0)
                 .start();
+    }
+    public void setActionWhenMoveDone(CharacerClass character){
+        if(character.getPosition() == AttackBoxObject.getPositon()){
+                character.getEnemy().setHealth(character.getEnemy().getHealth() - 5);
+                drawProgressBar();
+        }
+    }
+    public void drawProgressBar(){
+        ProgressBar healthBarP1 = findViewById(R.id.progressBar_ph1);
+        ProgressBar healthBarP2 = findViewById(R.id.progressBar_ph2);
+        //// set color
+        healthBarP1.getProgressDrawable().setColorFilter(Color.rgb(217, 20, 33),android.graphics.PorterDuff.Mode.MULTIPLY);
+        healthBarP2.getProgressDrawable().setColorFilter(Color.rgb(77, 219, 0),android.graphics.PorterDuff.Mode.MULTIPLY);
+        ///set progress = health
+        healthBarP1.setProgress(HeroObject.getHealth());
+        healthBarP2.setProgress(EnemyObject.getHealth());
     }
 }

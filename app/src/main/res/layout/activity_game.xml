@@ -303,7 +303,7 @@
         android:id="@+id/hero"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:rotationY="-190"
+        android:rotationY="-180"
         app:layout_constraintBottom_toBottomOf="@+id/box12"
         app:layout_constraintEnd_toEndOf="@+id/box12"
         app:layout_constraintStart_toStartOf="@+id/box12"
@@ -344,14 +344,14 @@
     <ProgressBar
         android:id="@+id/progressBar_ph2"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:progressDrawable="@drawable/player_heal_2"
         android:layout_width="200dp"
         android:layout_height="20dp"
         android:layout_marginStart="122dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:max="100"
-        android:progress="50"
+        android:progress="100"
+        android:rotationY="-180"
         app:layout_constraintBottom_toTopOf="@+id/box5"
         app:layout_constraintStart_toEndOf="@+id/box1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -359,7 +359,6 @@
     <ProgressBar
         android:id="@+id/progressBar_ph1"
         style="@android:style/Widget.ProgressBar.Horizontal"
-        android:progressDrawable="@drawable/player_heal_1"
         android:layout_width="200dp"
         android:layout_height="20dp"
         android:layout_marginStart="166dp"
@@ -367,6 +366,7 @@
         android:layout_marginBottom="28dp"
         android:max="100"
         android:progress="100"
+        android:rotationY="-180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/BackMainButton"
         app:layout_constraintTop_toBottomOf="@+id/imageView57" />

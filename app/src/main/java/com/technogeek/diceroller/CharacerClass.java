@@ -11,6 +11,16 @@ public class CharacerClass {
     TextView textView;
     int imageWidth = 65;
     int imageHeight  = 66;
+    CharacerClass Enemy;
+
+    public void setEnemy(CharacerClass enemy) {
+        Enemy = enemy;
+    }
+
+    public CharacerClass getEnemy() {
+        return Enemy;
+    }
+
     public void setImage(ImageView enemy) {
         this.Image = enemy;
     }
