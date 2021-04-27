@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -71,6 +72,17 @@ public class GameActivity extends AppCompatActivity {
         EnemyObject.getTextView().setTextColor(Color.rgb(18, 204, 59));
         HeroObject.getTextView().setTextColor(Color.rgb(224, 75, 16));
 
+        //set health
+        EnemyObject.setHealth(100);
+        HeroObject.setHealth(90);
+        //set health bar
+        ProgressBar healthBarP1 = findViewById(R.id.progressBar_ph1);
+        ProgressBar healthBarP2 = findViewById(R.id.progressBar_ph2);
+        healthBarP1.setMax(100);
+        healthBarP2.setMax(100);
+
+        healthBarP1.setProgress(HeroObject.getHealth());
+        healthBarP2.setProgress(EnemyObject.getHealth());
         // fix size image
         int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics());
         Hero_img.getLayoutParams().height = dimensionInDp;

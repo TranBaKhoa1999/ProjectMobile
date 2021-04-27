@@ -351,7 +351,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:max="100"
-        android:progress="100"
+        android:progress="50"
         app:layout_constraintBottom_toTopOf="@+id/box5"
         app:layout_constraintStart_toEndOf="@+id/box1"
         app:layout_constraintTop_toTopOf="parent" />
