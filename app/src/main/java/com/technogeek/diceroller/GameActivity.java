@@ -33,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     AttributeBox HealBoxObject = new AttributeBox();
     AttributeBox AttackBoxObject = new AttributeBox();
     List<AttributeBox> list = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +77,11 @@ public class GameActivity extends AppCompatActivity {
 
         //set health
         EnemyObject.setHealth(100);
-        HeroObject.setHealth(90);
+        HeroObject.setHealth(100);
 
         //set health bar
         drawProgressBar();
+
         // fix size image
         int dimensionInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics());
         Hero_img.getLayoutParams().height = dimensionInDp;
@@ -89,7 +91,6 @@ public class GameActivity extends AppCompatActivity {
         Enemy_img.getLayoutParams().height = dimensionInDp;
         Enemy_img.getLayoutParams().width = dimensionInDp;
         Enemy_img.requestLayout();
-
 
         HeroObject.setEnemy(EnemyObject);
         EnemyObject.setEnemy(HeroObject);
