@@ -47,8 +47,4 @@ public class AttributeBox {
         this.img.setImageResource(id);
     }
 
-    public boolean isHome (int i){
-        if (i == 1 || i == 12) {return true;}
-        return false;
-    }
 }
