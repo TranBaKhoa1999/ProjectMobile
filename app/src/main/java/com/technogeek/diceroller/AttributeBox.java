@@ -10,6 +10,7 @@ public class AttributeBox {
     int positon;
     int imgWid = 129;
     int imgHei = 129;
+    String nameAttribute;
 
     public ImageView getImg() {
         return img;
@@ -47,4 +48,11 @@ public class AttributeBox {
         this.img.setImageResource(id);
     }
 
+    public String getNameAttribute() {
+        return nameAttribute;
+    }
+
+    public void setNameAttribute(String nameAttribute) {
+        this.nameAttribute = nameAttribute;
+    }
 }

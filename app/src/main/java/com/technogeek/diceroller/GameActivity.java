@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class GameActivity extends AppCompatActivity {
     CharacerClass HeroObject = new CharacerClass();
     AttributeBox HealBoxObject = new AttributeBox();
     AttributeBox AttackBoxObject = new AttributeBox();
+    List<AttributeBox> list = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +105,6 @@ public class GameActivity extends AppCompatActivity {
     public boolean containsPosition(final List<AttributeBox> list, final int position){
         return list.stream().anyMatch(o -> o.getPositon() == position);
     }
-
-    List<AttributeBox> list = new ArrayList();
     public void randomAttributeBox(String atrb){
         int position;
         Random random = new Random();
@@ -122,6 +122,7 @@ public class GameActivity extends AppCompatActivity {
                 int res = getResources().getIdentifier(atrb, "drawable", getPackageName());
                 //set box info
                 box.setImg(boxImage);
+                box.setNameAttribute(atrb);
                 box.setPositon(position);
                 box.setImageResource(res);
                 //add box to list
@@ -232,9 +233,14 @@ public class GameActivity extends AppCompatActivity {
                 .start();
     }
     public void setActionWhenMoveDone(CharacerClass character){
-        if(character.getPosition() == AttackBoxObject.getPositon()){
-                character.getEnemy().setHealth(character.getEnemy().getHealth() - 5);
-                drawProgressBar();
+        Optional<AttributeBox> tmp =  list.stream().filter(p -> p.getPositon() ==  character.getPosition()).findFirst();
+        if(tmp.isPresent()){
+                if(tmp.get().getNameAttribute().equals("attack")){
+                    character.getEnemy().setHealth(character.getEnemy().getHealth() - 30);
+                }else if(tmp.get().getNameAttribute().equals("heal")){
+                    character.setHealth(character.getHealth() + 10);
+                }
+            drawProgressBar();
         }
     }
     public void drawProgressBar(){
