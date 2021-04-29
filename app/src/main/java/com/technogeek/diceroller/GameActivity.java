@@ -1,10 +1,12 @@
 package com.technogeek.diceroller;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -27,7 +29,6 @@ public class GameActivity extends AppCompatActivity {
     String type_Of_Game;
     CharacerClass EnemyObject = new CharacerClass();
     CharacerClass HeroObject = new CharacerClass();
-    List<Integer> checkList = new ArrayList();
     AttributeBox HealBoxObject = new AttributeBox();
     AttributeBox AttackBoxObject = new AttributeBox();
     @Override
@@ -36,8 +37,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setBasicGame();
-        randomHealBox();
-        randomAttackBox();
+        createAttributeBox();
         setListenerEvent();
     }
     private void setBasicGame(){
@@ -100,46 +100,47 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
-    public void randomHealBox(){
-        //create 6 box heal
-        int i, healBox = 6;;
+    public boolean containsPosition(final List<AttributeBox> list, final int position){
+        return list.stream().anyMatch(o -> o.getPositon() == position);
+    }
+
+    List<AttributeBox> list = new ArrayList();
+    public void randomAttributeBox(String atrb){
+        int position;
         Random random = new Random();
-        while (healBox > 0) {
-            i = random.nextInt(22) + 1;
-            if(HealBoxObject.isHome(i)) continue;
-            if(checkList.contains(i) == false) {
-                String boxId_str = "box" + i;
+        while(true){
+            position = random.nextInt(22)+1;
+            //check Home position ?
+            if(position == 1 || position == 12) continue;
+            //check exist position ?
+            if(!containsPosition(list,position)) {
+                //create box
+                AttributeBox box = new AttributeBox();
+                String boxId_str = "box" + position;
                 int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
-                ImageView box = (ImageView) findViewById(boxId);
-                HealBoxObject.setImg(box);
-                HealBoxObject.setPositon(i);
-                int res = getResources().getIdentifier("heal", "drawable", getPackageName());
-                HealBoxObject.setImageResource(res);
-                checkList.add(i);
-                healBox--;
+                ImageView boxImage = (ImageView) findViewById(boxId);
+                int res = getResources().getIdentifier(atrb, "drawable", getPackageName());
+                //set box info
+                box.setImg(boxImage);
+                box.setPositon(position);
+                box.setImageResource(res);
+                //add box to list
+                list.add(box);
+                break;
             }
         }
     }
-    private void randomAttackBox(){
-        //create 14 box attack
-        int i, attackBox = 14;
-        Random random = new Random();
-        while (attackBox > 0) {
-            i = random.nextInt(22)+1;
-            if(AttackBoxObject.isHome(i)) continue;
-            if(checkList.contains(i) == false) {
-                String boxId_str = "box" + i;
-                int boxId = getResources().getIdentifier(boxId_str, "id", getPackageName());
-                ImageView box = (ImageView) findViewById(boxId);
-                AttackBoxObject.setImg(box);
-                AttackBoxObject.setPositon(i);
-                int res = getResources().getIdentifier("attack", "drawable", getPackageName());
-                AttackBoxObject.setImageResource(res);
-                checkList.add(i);
-                attackBox--;
-            }
+    public void createAttributeBox(){
+        //6 heal box
+        for (int hb = 0; hb < 6; hb++){
+            randomAttributeBox("heal");
+        }
+        //10 attack box
+        for (int ab = 0; ab < 10; ab++){
+            randomAttributeBox("attack");
         }
     }
+
     private void rotateDice() {
         diceImage.setClickable(false);
         final int i = random.nextInt(6)+1;
@@ -245,5 +246,5 @@ public class GameActivity extends AppCompatActivity {
         ///set progress = health
         healthBarP1.setProgress(HeroObject.getHealth());
         healthBarP2.setProgress(EnemyObject.getHealth());
-    }
+   }
 }
