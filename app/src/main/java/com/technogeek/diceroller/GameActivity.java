@@ -237,9 +237,9 @@ public class GameActivity extends AppCompatActivity {
         Optional<AttributeBox> tmp =  list.stream().filter(p -> p.getPositon() ==  character.getPosition()).findFirst();
         if(tmp.isPresent()){
                 if(tmp.get().getNameAttribute().equals("attack")){
-                    character.getEnemy().setHealth(character.getEnemy().getHealth() - 30);
+                    character.getEnemy().setHealth( (character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ) );
                 }else if(tmp.get().getNameAttribute().equals("heal")){
-                    character.setHealth(character.getHealth() + 10);
+                    character.setHealth( (character.getHealth() + 10) >100 ? 100: (character.getHealth() + 10));
                 }
             drawProgressBar();
             resetAttributeBox(tmp.get());
