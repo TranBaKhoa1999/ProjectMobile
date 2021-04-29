@@ -99,32 +99,10 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/imageView57"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="248dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/box2"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView58"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="248dp"
-        android:layout_marginTop="248dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/box2"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
         android:id="@+id/box16"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="316dp"
+        android:layout_marginStart="312dp"
         android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -135,7 +113,7 @@
         android:id="@+id/box15"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="384dp"
+        android:layout_marginStart="380dp"
         android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -146,7 +124,7 @@
         android:id="@+id/box14"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="452dp"
+        android:layout_marginStart="448dp"
         android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -157,7 +135,7 @@
         android:id="@+id/box13"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="520dp"
+        android:layout_marginStart="516dp"
         android:layout_marginTop="248dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -369,7 +347,6 @@
         android:rotationY="-180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/BackMainButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageView57"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

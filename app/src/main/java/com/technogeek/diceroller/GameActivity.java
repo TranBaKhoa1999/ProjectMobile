@@ -242,7 +242,16 @@ public class GameActivity extends AppCompatActivity {
                     character.setHealth(character.getHealth() + 10);
                 }
             drawProgressBar();
+            resetAttributeBox(tmp.get());
         }
+    }
+    public void resetAttributeBox(AttributeBox box){
+        int boxId = getResources().getIdentifier("box"+box.getPositon(), "id", getPackageName());
+        ImageView boxImage = (ImageView) findViewById(boxId);
+        int res = getResources().getIdentifier("box2", "drawable", getPackageName());
+        boxImage.setImageResource(res);
+        randomAttributeBox(box.getNameAttribute());
+        list.remove(box);
     }
     public void drawProgressBar(){
         ProgressBar healthBarP1 = findViewById(R.id.progressBar_ph1);
