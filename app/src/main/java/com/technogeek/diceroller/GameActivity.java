@@ -276,8 +276,7 @@ public class GameActivity extends AppCompatActivity {
         btnPlayAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(getIntent());
+                onBackPressed();
             }
         });
         dialog.show();
