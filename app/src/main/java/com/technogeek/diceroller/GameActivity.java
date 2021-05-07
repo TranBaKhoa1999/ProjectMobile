@@ -1,18 +1,18 @@
 package com.technogeek.diceroller;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,12 +28,11 @@ public class GameActivity extends AppCompatActivity {
     Boolean isHeroTurn = true;
     Random random = new Random();
     String type_Of_Game;
-    CharacerClass EnemyObject = new CharacerClass();
-    CharacerClass HeroObject = new CharacerClass();
+    CharacterClass EnemyObject = new CharacterClass();
+    CharacterClass HeroObject = new CharacterClass();
     AttributeBox HealBoxObject = new AttributeBox();
     AttributeBox AttackBoxObject = new AttributeBox();
     List<AttributeBox> list = new ArrayList();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +41,11 @@ public class GameActivity extends AppCompatActivity {
         setBasicGame();
         createAttributeBox();
         setListenerEvent();
+//        dialogEndGame("PLAYER 2 WIN !!!");
     }
     private void setBasicGame(){
         int id1 = getIntent().getIntExtra("Image_player_1",0);
         int id2 = getIntent().getIntExtra("Image_player_2",0);
-
-
         diceImage = findViewById(R.id.dice_image);
         ImageView Enemy_img = findViewById(R.id.enemy);
         TextView textView_p2 = findViewById(R.id.textView_p2);
@@ -169,7 +167,7 @@ public class GameActivity extends AppCompatActivity {
         });
         diceImage.startAnimation(anim);
     }
-    public void Move(int step, final CharacerClass Character){
+    public void Move(int step, final CharacterClass Character){
         final int[]s = {step};
         int currentPos = Character.getPosition();
         currentPos = currentPos+1>22? 1 : currentPos+1;
@@ -226,27 +224,63 @@ public class GameActivity extends AppCompatActivity {
     public void CloseActivity(View view) {
         onBackPressed();
     }
-    public void ChangePostitionHead(CharacerClass Character){
+    public void ChangePostitionHead(CharacterClass Character){
         Character.getTextView().animate()
                 .x(Character.getImage().getX() )
                 .y(Character.getImage().getY() - Character.getImage().getHeight()/(5/2))
                 .setDuration(0)
                 .start();
     }
-    public void setActionWhenMoveDone(CharacerClass character){
+    public void setActionWhenMoveDone(CharacterClass character){
         if(character.getPosition() == character.getEnemy().getPosition()){ // when character touch enemy
             character.getEnemy().setHealth((character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ));
+            checkHealWhenActionDone(character);
         }
         Optional<AttributeBox> tmp =  list.stream().filter(p -> p.getPositon() ==  character.getPosition()).findFirst();
         if(tmp.isPresent()){
                 if(tmp.get().getNameAttribute().equals("attack")){
                     character.getEnemy().setHealth( (character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ) );
+                    checkHealWhenActionDone(character);
                 }else if(tmp.get().getNameAttribute().equals("heal")){
                     character.setHealth( (character.getHealth() + 10) >100 ? 100: (character.getHealth() + 10));
                 }
             drawProgressBar();
             resetAttributeBox(tmp.get());
         }
+    }
+    public void checkHealWhenActionDone(CharacterClass character){
+        String winner;
+        if(character.getHealth() == 0){
+            winner = (String) character.getEnemy().getTextView().getText() + " WIN !!!";
+            dialogEndGame(winner);
+        } else if(character.getEnemy().getHealth() == 0){
+            winner = (String) character.getTextView().getText() + " WIN !!!";
+            dialogEndGame(winner);
+        }
+    }
+
+    private  void dialogEndGame(String alert){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_endgame);
+        TextView txtAlert = (TextView) dialog.findViewById(R.id.textViewAlertDialog);
+        Button btnHome = (Button) dialog.findViewById(R.id.buttonHomeDialog);
+        Button btnPlayAgain = (Button) dialog.findViewById(R.id.buttonPlayAgainDialog);
+        txtAlert.setText(alert);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnPlayAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        dialog.show();
     }
     public void resetAttributeBox(AttributeBox box){
         int boxId = getResources().getIdentifier("box"+box.getPositon(), "id", getPackageName());

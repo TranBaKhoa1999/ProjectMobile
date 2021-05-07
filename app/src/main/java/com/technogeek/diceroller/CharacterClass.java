@@ -1,23 +1,22 @@
 package com.technogeek.diceroller;
 
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CharacerClass {
+public class CharacterClass {
     ImageView Image;
     int position; // exp : 3 => box3
     int Health;
     TextView textView;
     int imageWidth = 65;
     int imageHeight  = 66;
-    CharacerClass Enemy;
+    CharacterClass Enemy;
 
-    public void setEnemy(CharacerClass enemy) {
+    public void setEnemy(CharacterClass enemy) {
         Enemy = enemy;
     }
 
-    public CharacerClass getEnemy() {
+    public CharacterClass getEnemy() {
         return Enemy;
     }
 
