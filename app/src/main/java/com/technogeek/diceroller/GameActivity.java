@@ -199,8 +199,11 @@ public class GameActivity extends AppCompatActivity {
                             Move(s[0],Character);
                         }else{
                             setActionWhenMoveDone(Character);
+                            checkHealWhenActionDone(Character);
                             if(type_Of_Game.equals("vsBOT") && isHeroTurn==false){
-                                rotateDice();
+                                if(Character.getHealth() !=0 && Character.getEnemy().getHealth() !=0){
+                                    rotateDice();
+                                }
                             }else{
                                 diceImage.setClickable(true);
                             }
@@ -234,13 +237,11 @@ public class GameActivity extends AppCompatActivity {
     public void setActionWhenMoveDone(CharacterClass character){
         if(character.getPosition() == character.getEnemy().getPosition()){ // when character touch enemy
             character.getEnemy().setHealth((character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ));
-            checkHealWhenActionDone(character);
         }
         Optional<AttributeBox> tmp =  list.stream().filter(p -> p.getPositon() ==  character.getPosition()).findFirst();
         if(tmp.isPresent()){
                 if(tmp.get().getNameAttribute().equals("attack")){
                     character.getEnemy().setHealth( (character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ) );
-                    checkHealWhenActionDone(character);
                 }else if(tmp.get().getNameAttribute().equals("heal")){
                     character.setHealth( (character.getHealth() + 10) >100 ? 100: (character.getHealth() + 10));
                 }
