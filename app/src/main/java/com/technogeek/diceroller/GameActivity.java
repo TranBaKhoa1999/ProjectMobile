@@ -237,6 +237,7 @@ public class GameActivity extends AppCompatActivity {
     public void setActionWhenMoveDone(CharacterClass character){
         if(character.getPosition() == character.getEnemy().getPosition()){ // when character touch enemy
             character.getEnemy().setHealth((character.getEnemy().getHealth() - 30 )<0 ? 0 : (character.getEnemy().getHealth() - 30 ));
+            drawProgressBar();
         }
         Optional<AttributeBox> tmp =  list.stream().filter(p -> p.getPositon() ==  character.getPosition()).findFirst();
         if(tmp.isPresent()){
