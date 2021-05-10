@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -30,8 +31,6 @@ public class GameActivity extends AppCompatActivity {
     String type_Of_Game;
     CharacterClass EnemyObject = new CharacterClass();
     CharacterClass HeroObject = new CharacterClass();
-    AttributeBox HealBoxObject = new AttributeBox();
-    AttributeBox AttackBoxObject = new AttributeBox();
     List<AttributeBox> list = new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class GameActivity extends AppCompatActivity {
         setBasicGame();
         createAttributeBox();
         setListenerEvent();
-//        dialogEndGame("PLAYER 2 WIN !!!");
     }
     private void setBasicGame(){
         int id1 = getIntent().getIntExtra("Image_player_1",0);
@@ -262,8 +260,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private  void dialogEndGame(String alert){
-        Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_endgame);
+        dialog.setCanceledOnTouchOutside(false);
         TextView txtAlert = (TextView) dialog.findViewById(R.id.textViewAlertDialog);
         Button btnHome = (Button) dialog.findViewById(R.id.buttonHomeDialog);
         Button btnPlayAgain = (Button) dialog.findViewById(R.id.buttonPlayAgainDialog);
@@ -271,6 +271,7 @@ public class GameActivity extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(GameActivity.this, MainActivity.class);
                 startActivity(intent);
             }
