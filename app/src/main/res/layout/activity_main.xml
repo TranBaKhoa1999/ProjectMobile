@@ -45,10 +45,13 @@
 
     <Button
         android:id="@+id/close_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:onClick="exit"
-        android:text="Close"
+        android:textColor="#ffffff"
+        android:background="#ff00"
+        android:text="X"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
