@@ -287,7 +287,7 @@ public class GameActivity extends AppCompatActivity {
     public void resetAttributeBox(AttributeBox box){
         int boxId = getResources().getIdentifier("box"+box.getPositon(), "id", getPackageName());
         ImageView boxImage = (ImageView) findViewById(boxId);
-        int res = getResources().getIdentifier("box2", "drawable", getPackageName());
+        int res = getResources().getIdentifier("noobject", "drawable", getPackageName());
         boxImage.setImageResource(res);
         randomAttributeBox(box.getNameAttribute());
         list.remove(box);
