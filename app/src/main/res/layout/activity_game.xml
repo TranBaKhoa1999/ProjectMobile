@@ -175,7 +175,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.785"
-        app:srcCompat="@drawable/box2"
+        app:srcCompat="@drawable/noobject"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -201,7 +201,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.114"
-        app:srcCompat="@drawable/box2"
+        app:srcCompat="@drawable/noobject"
         tools:ignore="MissingConstraints" />
 
     <ImageView
